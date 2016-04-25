@@ -1,0 +1,58 @@
+{
+  "name": "Weekly Sticker",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": ["management", "contextMenus", "tabs", "bookmarks", "storage", "http://*/*",
+    "https://*/*"
+  ],
+  "description": "Weekly Sticker",
+  "icons": {
+    "16": "Sticker16.png",
+    "48": "Sticker48.png",
+    "128": "Sticker128.png"
+  },
+  "background": {
+    "scripts": ["eventPage.js"]
+  },
+  "browser_action": {
+    "default_title": "Weekly Sticker",
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Alt+P",
+        "mac": "Command+P",
+        "chromeos": "Alt+P",
+        "linux": "Alt+P"
+      }
+    },
+    "add-plan-today": {
+      "suggested_key": {
+        "windows": "Ctrl+Y",
+        "mac": "Command+Y",
+        "chromeos": "Ctrl+Y",
+        "linux": "Ctrl+Y"
+      },
+      "description": "Add Plan for Today"
+    },
+    "save-temp-urls": {
+      "suggested_key": {
+        "windows": "Alt+X",
+        "mac": "Command+X",
+        "chromeos": "Alt+X",
+        "linux": "Alt+X"
+      },
+      "description": "Save Opened Tabs for Future Reference"
+    },
+    "recover-temp-urls": {
+      "suggested_key": {
+        "windows": "Alt+V",
+        "mac": "Command+V",
+        "chromeos": "Alt+V",
+        "linux": "Alt+V"
+      },
+      "description": "Recover Saved Temporary Tabs for Reference"
+    }
+  }
+}
