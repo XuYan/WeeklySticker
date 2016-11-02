@@ -2,6 +2,7 @@
   "name": "Weekly Sticker",
   "version": "1.0",
   "manifest_version": 2,
+  "content_security_policy":"script-src 'self' https://cdnjs.cloudflare.com; object-src 'self'",
   "permissions": ["management", "contextMenus", "tabs", "bookmarks", "storage", "http://*/*",
     "https://*/*"
   ],

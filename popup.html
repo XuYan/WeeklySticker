@@ -1,16 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<HTML xmlns="http://www.w3.org/1999/xhtml" style="height:580px; width:780px">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+  <link rel="stylesheet/less" type="text/css" href="styles.less" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
   <script type="text/javascript" src="weekplan.js"></script>
   <script type="text/javascript" src="eventPage.js"></script>
-  <body style="height:100%">
-    <table style="width:100%; height:100%">
-      <tr style="height:3%">
+  <body class="sticker">
+    <table class="note_pad">
+      <tr class="date_row">
         <td style="text-align:center"><button id="prev" type="button">Prev</button></td>
-        <td id="date" style="text-align:center; font-family:verdana; font-size: 18px">Date</td>		
+        <td id="date">Date</td>		
         <td style="text-align:center"><button id="next" type="button">Next</button></td>
       </tr>
       <tr>
-        <td colspan="3" style="padding:0px"><textarea id="content" style="outline: none; border: none; width: 100%; height: 100%; resize: none; overflow: hidden;"></textarea></td>
+        <td colspan="3">
+          <textarea id="content" />
+        </td>
       </tr>
     </table>
   </body>
