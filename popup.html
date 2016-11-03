@@ -2,9 +2,9 @@
 <HTML xmlns="http://www.w3.org/1999/xhtml">
   <link rel="stylesheet/less" type="text/css" href="styles.less" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
-  <script type="text/javascript" src="weekplan.js"></script>
-  <script type="text/javascript" src="eventPage.js"></script>
-  <body class="sticker">
+  <!-- data-main attribute tells require.js to load ./config.js after require.js loads. -->
+  <script data-main="config" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.2/require.js"></script>
+  <body id="app" class="sticker">
     <table class="note_pad">
       <tr class="date_row">
         <td style="text-align:center"><button id="prev" type="button">Prev</button></td>
@@ -13,7 +13,7 @@
       </tr>
       <tr>
         <td colspan="3">
-          <textarea id="content" />
+          <textarea id="content"></textarea>
         </td>
       </tr>
     </table>
