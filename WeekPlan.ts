@@ -5,6 +5,7 @@ import {EventManager} from './EventManager';
 
 class WeekPlan {
 	private static _instance: WeekPlan = undefined;
+	static port_name: string = "popup_port";
 
 	private _current_date: Date;
 	private _elements: {[name: string]: HTMLElement}
@@ -127,13 +128,13 @@ class WeekPlan {
 	}
 
 	run(): void {
-		// // Method returns a Port object, which will be disconnected when popup unloads
-		// chrome.runtime.connect(<chrome.runtime.ConnectInfo> {
-		// 	name: "popup_port"
-		// });
+		// Method returns a Port object, which will be disconnected when popup unloads
+		chrome.runtime.connect(<chrome.runtime.ConnectInfo> {
+			name: WeekPlan.port_name
+		});
 		this.load(new Date().toDateString(), this._show.bind(this));
 		this._updateDateChangeButtonState();
-		this._updateIcon();
+		this.updateIcon();
 	}
 
 	removeOutdatePlan(): void {
@@ -151,7 +152,7 @@ class WeekPlan {
 		});
 	}
 
-	private _updateIcon(): void {
+	updateIcon(): void {
 		let today_str: string = new Date().toDateString(); 
 		chrome.storage.sync.get(today_str, (items: {[key: string] : string}) => {
 			if (typeof items[today_str] === 'undefined' || items[today_str] === "") {
@@ -211,7 +212,7 @@ class WeekPlan {
 			if (chrome.runtime.lastError) {
 				console.log("Runtime error when saving content");
 			}
-			this._updateIcon();
+			this.updateIcon();
 		});
 	}
 }

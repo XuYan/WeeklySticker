@@ -112,13 +112,13 @@ define(["require", "exports", './EventManager'], function (require, exports, Eve
             }
         };
         WeekPlan.prototype.run = function () {
-            // // Method returns a Port object, which will be disconnected when popup unloads
-            // chrome.runtime.connect(<chrome.runtime.ConnectInfo> {
-            // 	name: "popup_port"
-            // });
+            // Method returns a Port object, which will be disconnected when popup unloads
+            chrome.runtime.connect({
+                name: WeekPlan.port_name
+            });
             this.load(new Date().toDateString(), this._show.bind(this));
             this._updateDateChangeButtonState();
-            this._updateIcon();
+            this.updateIcon();
         };
         WeekPlan.prototype.removeOutdatePlan = function () {
             var today = new Date().getTime();
@@ -132,7 +132,7 @@ define(["require", "exports", './EventManager'], function (require, exports, Eve
                 }
             });
         };
-        WeekPlan.prototype._updateIcon = function () {
+        WeekPlan.prototype.updateIcon = function () {
             var today_str = new Date().toDateString();
             chrome.storage.sync.get(today_str, function (items) {
                 if (typeof items[today_str] === 'undefined' || items[today_str] === "") {
@@ -193,10 +193,11 @@ define(["require", "exports", './EventManager'], function (require, exports, Eve
                 if (chrome.runtime.lastError) {
                     console.log("Runtime error when saving content");
                 }
-                _this._updateIcon();
+                _this.updateIcon();
             });
         };
         WeekPlan._instance = undefined;
+        WeekPlan.port_name = "popup_port";
         return WeekPlan;
     }());
     exports.WeekPlan = WeekPlan;

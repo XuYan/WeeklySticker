@@ -82,7 +82,11 @@ require(["BookmarkModule", "WeekPlanModule"], function (BM, WP) {
 	});
 
 	chrome.runtime.onConnect.addListener((port) => {
-		console.log("onConnect...");
-		// port.onDisconnect.addListener();
+		console.log(port.name + " onConnect...");
+		if (port.name === WP.WeekPlan.port_name) {
+			port.onDisconnect.addListener(() => {
+				WP.WeekPlan.getInstance().updateIcon();
+			});	
+		}
 	});
 });
