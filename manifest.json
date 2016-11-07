@@ -12,8 +12,15 @@
     "48": "Sticker48.png",
     "128": "Sticker128.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["content.js"]
+    }
+  ],
   "background": {
-    "scripts": ["eventPage.js"]
+    "persistent": false,
+    "page": "background.html"
   },
   "browser_action": {
     "default_title": "Weekly Sticker",
