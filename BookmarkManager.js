@@ -21,10 +21,14 @@ define(["require", "exports"], function (require, exports) {
         });
         BookmarkManager.prototype._createTempUrlBookmark = function () {
             var _this = this;
-            chrome.bookmarks.create({
-                'title': BookmarkManager.folderTitle
-            }, function (temporaryFolder) {
-                _this._tempUrlFolder = temporaryFolder;
+            chrome.bookmarks.search(BookmarkManager.folderTitle, function (results) {
+                if (results.length === 0) {
+                    chrome.bookmarks.create({
+                        'title': BookmarkManager.folderTitle
+                    }, function (temporaryFolder) {
+                        _this._tempUrlFolder = temporaryFolder;
+                    });
+                }
             });
         };
         BookmarkManager.prototype._addShortcut = function () {

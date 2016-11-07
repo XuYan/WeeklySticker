@@ -9,27 +9,6 @@ require.config({
 	}
 });
 
-// Set up one-time initialization (context menu and app shortcuts)
-chrome.runtime.onInstalled.addListener((details) => {
-    console.log("handling install event...");
-
-    // TODO: Create BookmarkManager app
-});
-
-chrome.runtime.setUninstallURL(""/*Not open new tab*/, () => {
-    console.log("handling uninstall event...");
-    if (chrome.runtime.lastError) {
-        console.log("Invalid URL is given when uninstall extension");
-        return;
-    }
-
-    // Remove week plans
-    chrome.storage.sync.clear(() => {
-        let message = (chrome.runtime.lastError) ? "Clear Storage Error" : "Storage Cleared!!!";
-        console.log(message);
-    });
-});
-
 require(["BookmarkModule", "WeekPlanModule"], function (BM, WP) {
 	BM.BookmarkManager.getInstance();
 

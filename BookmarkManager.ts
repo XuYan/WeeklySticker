@@ -21,10 +21,14 @@ class BookmarkManager {
 	}
 
 	private _createTempUrlBookmark(): void {
-		chrome.bookmarks.create({
-			'title': BookmarkManager.folderTitle
-		}, (temporaryFolder: chrome.bookmarks.BookmarkTreeNode) => {
-			this._tempUrlFolder = temporaryFolder;
+		chrome.bookmarks.search(BookmarkManager.folderTitle, (results: chrome.bookmarks.BookmarkTreeNode[]) => {
+			if (results.length === 0) {
+				chrome.bookmarks.create({
+						'title': BookmarkManager.folderTitle
+					}, (temporaryFolder: chrome.bookmarks.BookmarkTreeNode) => {
+						this._tempUrlFolder = temporaryFolder;
+					});
+			}
 		});
 	}
 
